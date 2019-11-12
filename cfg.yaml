@@ -1,13 +1,13 @@
 db:
-  ip: 127.0.0.1
+  ip: 192.168.0.110
   port: 3306
-  user: root
+  user: yunlian
   password: 123456
   dbName: yunlian-smart
   idle: 10
   active: 10
 redis:
-  addr: 127.0.0.1:6379
+  addr: 192.168.0.110:6379
   db: 10
   idle: 10
   active: 10
