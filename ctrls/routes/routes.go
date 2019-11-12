@@ -18,6 +18,7 @@ import (
 )
 
 func InitRoutes(e *echo.Echo) {
+
 	e.HTTPErrorHandler = ApiErrHandler
 	e.Use(middlewares.Recover())
 	initUserRoute(e)
@@ -28,6 +29,7 @@ func initUserRoute(e *echo.Echo) {
 	g := e.Group("/api/user")
 
 	g.POST("/register", userApi.Register)
+
 	g.GET("/page/:page/:size", userApi.List)
 }
 

@@ -26,6 +26,7 @@ func Recover() echo.MiddlewareFunc {
 					c.Error(err)
 				}
 			}()
+
 			return next(c)
 		}
 	}

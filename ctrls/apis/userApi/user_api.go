@@ -15,6 +15,8 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/yunlian/smart/models"
+
 	"github.com/yunlian/smart/constants"
 	"github.com/yunlian/smart/internal/storages"
 
@@ -26,7 +28,6 @@ import (
 )
 
 func List(ctx echo.Context) error {
-
 	page := ctx.Param("page")
 	size := ctx.Param("size")
 
@@ -53,6 +54,7 @@ func Register(ctx echo.Context) error {
 		Value:    "",
 		Path:     "/",
 		HttpOnly: true,
+		MaxAge:   -1,
 	})
 
 	req := userModel.RegReq{}
@@ -62,6 +64,9 @@ func Register(ctx echo.Context) error {
 	}
 
 	//TODO: 校验传参
+	if req.Phone.IsEmpty() {
+		models.PanicErr("注册手机号不能为空")
+	}
 
 	u := userModel.Register(&req)
 
