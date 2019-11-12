@@ -11,7 +11,7 @@ import (
 	"flag"
 	"runtime"
 
-	"github.com/labstack/echo/middleware"
+	"github.com/yunlian/smart/ctrls/routes"
 
 	"github.com/labstack/echo"
 
@@ -40,8 +40,7 @@ func main() {
 	//初始化 http 框架 参考 https://echo.labstack.com
 	e := echo.New()
 
-	//设置 recover,捕获业务代码中的 panic 错误,这里将重写recover 将http json 返回一致
-	e.Use(middleware.Recover())
+	routes.InitRoutes(e)
 
 	if err := e.Start(":9999"); err != nil {
 		panic("启动HTTP服务器异常")

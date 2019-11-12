@@ -17,6 +17,7 @@ var (
 	UseRedis *stores.RedisStore
 )
 
+//初始化Mysql/redis
 func InitStorage() {
 	UseMysql = stores.NewMyStore(cfg.Cfg.DB)
 	UseRedis = stores.NewRedisStore(cfg.Cfg.Redis)
