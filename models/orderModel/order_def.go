@@ -35,3 +35,8 @@ func (SEOrder) TableName() string {
 func (SEOrderEntry) TableName() string {
 	return "SEOrderEntry"
 }
+
+type SEOrderAgg struct {
+	*SEOrder
+	Entry []SEOrderEntry `json:"entry"`
+}
