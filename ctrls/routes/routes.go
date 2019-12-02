@@ -10,6 +10,8 @@ package routes
 import (
 	"net/http"
 
+	"github.com/yunlian/smart/ctrls/apis/orderApi"
+
 	"github.com/yunlian/smart/ctrls/apis/userApi"
 
 	"github.com/labstack/echo"
@@ -24,6 +26,13 @@ func InitRoutes(e *echo.Echo) {
 	initUserRoute(e)
 }
 
+func initSEOrderRoute(e *echo.Echo) {
+	g := e.Group("/api/order")
+	g.POST("/create", orderApi.Create)
+	g.POST("/update", orderApi.Update)
+	g.POST("/query", orderApi.QueryPage)
+}
+
 func initUserRoute(e *echo.Echo) {
 	//这里可以将一组api 添加拦截器,类似 servlet 中的 filter
 	g := e.Group("/api/user")
@@ -31,6 +40,7 @@ func initUserRoute(e *echo.Echo) {
 	g.POST("/register", userApi.Register)
 
 	g.GET("/page/:page/:size", userApi.List)
+
 }
 
 func ApiErrHandler(e error, c echo.Context) {
